@@ -1,0 +1,2546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afiliados Sandwiche - Ganhe comissão vendendo online com +70 marcas</title>
+    <meta name="description" content="Transforme seu link na bio em uma vitrine de vendas. Com o programa de afiliados Sandwiche, você divulga produtos, compartilha campanhas e ganha comissão por venda. Renda extra fácil, sem burocracia.">
+    <meta name="keywords" content="programa de afiliados, ganhar dinheiro online, renda extra, vender online, link na bio com comissão, afiliado pelo WhatsApp, comissão por venda, marcas conhecidas, links prontos, sem burocracia, zero investimento inicial">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script>
+        // Configuração do HLS para Safari
+        window.LOOM_CONFIG = {
+            streaming: {
+                preferNativeHls: true,
+                useNativeHlsForFairPlay: true
+            },
+            privacy: {
+                disableStorage: true,
+                disableAnalytics: true
+            }
+        };
+    </script>
+    <style>
+        :root {
+            --primary-color: #4F34E2;
+            --text-color: #2D3748;
+            --background-color: #FFFFFF;
+            --secondary-background: #F7FAFC;
+            --accent-color: #FF40BF;
+            --gradient: linear-gradient(135deg, #FF40BF 0%, #4F34E2 100%);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        header {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+        }
+
+        .header-content .btn-primary {
+            margin-left: auto;
+            margin-right: 1rem;
+        }
+
+        nav {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--text-color);
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            flex-direction: column;
+            gap: 0.5rem;
+            overflow-y: auto;
+            height: calc(100vh - 80px);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            text-align: left;
+            font-weight: 500;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-menu a:not(.btn):hover {
+            background: var(--secondary-background);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .mobile-menu .btn {
+            margin-top: 2rem;
+            text-align: center;
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(79, 52, 226, 0.3);
+        }
+
+        .mobile-menu .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 52, 226, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.5rem 1rem;
+            }
+
+            .header-content {
+                padding: 0;
+                height: 60px;
+            }
+
+            .logo img {
+                height: 24px;
+                width: auto;
+            }
+
+            .header-content .btn-primary {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .mobile-menu {
+                top: 60px;
+                height: calc(100vh - 60px);
+            }
+
+            .btn, .secondary-button {
+                width: 100%;
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+
+            .features-grid > div {
+                padding: 1rem;
+            }
+
+            .features-grid > div > div {
+                padding: 1rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 8rem 2rem;
+            background-color: #000;
+            text-align: center;
+            position: relative;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://campaigns.sdwc.me/common-files/images/img_background.png') center/cover;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 3rem;
+            border-radius: 24px;
+            background: rgba(0, 0, 0, 0.2);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @supports not (backdrop-filter: blur(10px)) {
+            .hero-content {
+                background: rgba(0, 0, 0, 0.85);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            line-height: 1.2;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(79, 52, 226, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 52, 226, 0.4);
+        }
+
+        .features {
+            padding: 6rem 0;
+            width: 100%;
+        }
+
+        .features > div {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+            position: relative;
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .products-section,
+        .regulation-section {
+            padding: 6rem 0;
+            width: 100%;
+        }
+
+        .products-content,
+        .regulation-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        #beneficios .section-title,
+        #regulamento .section-title {
+            margin-bottom: 2rem;
+        }
+
+        #beneficios .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        #beneficios .feature-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #beneficios .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        #beneficios .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        #beneficios .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+        }
+
+        #beneficios .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        #beneficios .feature-card p {
+            color: #4A5568;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .secondary-button {
+            background: var(--secondary-background);
+            color: var(--text-color);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .secondary-button:hover {
+            background: #eaeaea;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        footer {
+            background: #000000;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-content h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.8rem;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-content p:hover {
+            opacity: 1;
+        }
+
+        .social-links {
+            margin-top: 0;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #25D366;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bonus-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bonus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .bonus-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .bonus-card:hover::before {
+            opacity: 1;
+        }
+
+        .bonus-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .bonus-card p {
+            color: #4A5568;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .bonus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bonus-card {
+                padding: 2rem;
+            }
+            }
+
+            .bonus-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(79, 52, 226, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            line-height: 1.4;
+        }
+
+        .bonus-card h3 {
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-align: center;
+            line-height: 1.3;
+            color: var(--text-color);
+            }
+
+            .highlight-number {
+                font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .faq-section {
+            background: var(--secondary-background);
+            padding: 6rem 2rem;
+        }
+
+        .faq-content {
+            max-width: 800px;
+            margin: 0 auto;
+            counter-reset: faq-counter;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .faq-item h3 {
+            color: #000;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+        }
+
+        .faq-item h3::before {
+            content: counter(faq-counter);
+            counter-increment: faq-counter;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            
+            flex-shrink: 0;
+        }
+
+        .faq-item p {
+            color: #4A5568;
+            line-height: 1.6;
+            margin-left: 3rem;
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 1rem;
+                margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .whatsapp-button {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        #segmentos .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        #tutoriais .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        #tutoriais .swiper {
+            position: relative;
+            padding: 2rem 40px;
+            overflow: visible;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #tutoriais .swiper-slide {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #EEE;
+            height: auto;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        #tutoriais .swiper-slide:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+
+        #tutoriais .tutorial-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #tutoriais .tutorial-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+            text-align: center;
+        }
+
+        #tutoriais .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        #tutoriais .video-container iframe {
+                position: absolute;
+            top: 0;
+                left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            max-width: 100%;
+        }
+
+        #tutoriais .swiper-button-next,
+        #tutoriais .swiper-button-prev {
+            color: var(--primary-color);
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #tutoriais .swiper-button-next:after,
+        #tutoriais .swiper-button-prev:after {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        #tutoriais .swiper-button-next {
+            right: 10px;
+        }
+
+        #tutoriais .swiper-button-prev {
+            left: 10px;
+        }
+
+        #tutoriais .swiper-button-next:hover,
+        #tutoriais .swiper-button-prev:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            #tutoriais .swiper-button-next,
+            #tutoriais .swiper-button-prev {
+                display: none;
+            }
+            
+            #tutoriais .swiper {
+                padding: 2rem 0;
+            }
+            
+            #tutoriais .swiper-slide {
+                padding: 1rem;
+            }
+        }
+
+        #tutoriais .swiper-pagination-bullet-active {
+            background: var(--primary-color);
+        }
+
+        /* Estilos do Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+                left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 90%;
+            width: 600px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary-color);
+        }
+
+        .lightbox h2 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-size: 1.8rem;
+                text-align: center;
+            }
+
+        .lightbox table {
+                width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .lightbox th,
+        .lightbox td {
+                padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lightbox th {
+            background: var(--secondary-background);
+            font-weight: 600;
+        }
+
+        .lightbox tr:hover {
+            background: var(--secondary-background);
+        }
+
+        #beneficios .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        #beneficios .section-title {
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+                text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        #beneficios .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        #numeros .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        #numeros .feature-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #numeros .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        #numeros .highlight-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #numeros .feature-card p {
+            color: #4A5568;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            #numeros .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            #numeros .feature-card {
+                padding: 2rem;
+            }
+            
+            #numeros .highlight-number {
+                font-size: 2rem;
+            }
+        }
+
+        #como-funciona .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        #como-funciona .feature-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #como-funciona .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        #como-funciona .feature-number {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 1.5rem;
+        }
+
+        #como-funciona .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        #como-funciona .feature-card p {
+            color: #4A5568;
+            line-height: 1.6;
+                font-size: 1.1rem;
+            margin: 0;
+        }
+
+        #regulamento .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        #regulamento .feature-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #regulamento .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        #regulamento .highlight-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #regulamento .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        #regulamento .feature-card p {
+            color: #4A5568;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            #como-funciona .features-grid,
+            #regulamento .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            #como-funciona .feature-card,
+            #regulamento .feature-card {
+                padding: 2rem;
+            }
+            
+            #regulamento .highlight-number {
+                font-size: 2rem;
+            }
+        }
+
+        .growth-path {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .growth-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            width: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .growth-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+
+        .growth-header {
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .growth-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+
+        .growth-header.gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+
+        .growth-header.platinum {
+            background: linear-gradient(135deg, #E5E4E2 0%, #C0C0C0 100%);
+            color: #333;
+        }
+
+        .growth-header.black {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: white;
+        }
+
+        .growth-header.black h3 {
+            color: white;
+        }
+
+        .growth-content {
+            padding: 2rem;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .growth-item {
+            margin-bottom: 1.5rem;
+                padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .growth-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .growth-item strong {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .growth-item p {
+            margin: 0;
+                font-size: 1.1rem;
+            color: #4A5568;
+            line-height: 1.6;
+        }
+
+        .growth-item ul {
+            margin: 0;
+            padding-left: 1.5rem;
+            list-style-type: none;
+        }
+
+        .growth-item ul li {
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: #4A5568;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .growth-item ul li:before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+
+        .growth-icon {
+            font-size: 2.5rem;
+            z-index: 2;
+        }
+
+        .growth-header h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .growth-path {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0;
+                width: 100%;
+            }
+            
+            .growth-card {
+                margin: 0;
+                width: 100%;
+            }
+            
+            .growth-header {
+                padding: 1.2rem;
+            }
+            
+            .growth-content {
+                padding: 1.2rem;
+            }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+            overflow-x: hidden;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .feature-card p {
+            color: #4A5568;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .features-grid > div {
+            padding: 1rem;
+        }
+
+        .features-grid > div > div {
+            padding: 1rem;
+        }
+
+        #ciclos .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        #ciclos .feature-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        #ciclos .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        #ciclos .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        #ciclos .feature-card p {
+            color: #4A5568;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin: 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                position: relative;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0;
+                width: 100%;
+                margin: 0;
+                overflow-x: hidden;
+            }
+
+            .features-grid > div {
+                padding: 0;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .features-grid > div > div {
+                padding: 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .feature-card {
+                width: 100%;
+                margin: 0;
+            padding: 1.5rem;
+                overflow-x: hidden;
+            }
+
+            .growth-path {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0;
+                width: 100%;
+                margin: 0;
+                overflow-x: hidden;
+            }
+            
+            .growth-card {
+                margin: 0;
+                width: 100%;
+                overflow-x: hidden;
+            }
+            
+            .growth-header {
+                padding: 1.2rem;
+            }
+            
+            .growth-content {
+                padding: 1.2rem;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+                margin: 0 1rem;
+                width: calc(100% - 2rem);
+                overflow-x: hidden;
+            }
+
+            .section-title {
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .faq-content {
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .regulation-content {
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .products-content {
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .bonus-grid {
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .footer-content {
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            #tutoriais .swiper {
+                padding: 2rem 0;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            #tutoriais .swiper-slide {
+                padding: 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .video-container {
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .video-container iframe {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 0;
+                margin-top: 60px;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .whatsapp-button {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Estilos para as abas */
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .tabs-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: var(--secondary-background);
+            padding: 0.5rem;
+            border-radius: 50px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 0;
+        }
+
+        .tab-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab-button.active {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(79, 52, 226, 0.3);
+        }
+
+        .tab-button:hover:not(.active)::before {
+            opacity: 0.1;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tabs-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .tab-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const body = document.body;
+            
+            mobileMenu.classList.toggle('active');
+            if (mobileMenu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        }
+
+        // Função para scroll suave
+        function smoothScroll(target) {
+            const element = document.querySelector(target);
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // Fecha o menu e faz scroll suave quando clicar em um link
+        document.querySelectorAll('.mobile-menu a, nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = link.getAttribute('href');
+                
+                if (target.startsWith('#')) {
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                    smoothScroll(target);
+                } else {
+                    window.location.href = target;
+                }
+            });
+        });
+
+        // Fecha o menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Fecha o menu ao rolar a página
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll) {
+                document.querySelector('.mobile-menu').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Funções do Lightbox
+        function openLightbox() {
+            const lightbox = document.getElementById('comissoes-lightbox');
+            if (lightbox) {
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('comissoes-lightbox');
+            if (lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Fecha o lightbox ao clicar fora
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('comissoes-lightbox');
+            if (lightbox) {
+                lightbox.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            // Fecha o lightbox com a tecla ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+        });
+
+        // Adiciona os ícones para a seção de Regras
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('validity-icon').textContent = '30/06/2025';
+            document.getElementById('sales-icon').textContent = '1º mês';
+            document.getElementById('payment-icon').textContent = '10 dias';
+        });
+
+        console.log('Script iniciado');
+        
+        // Inicialização do Swiper
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM carregado, iniciando Swiper...');
+            const swiperElement = document.querySelector('#tutoriais .swiper');
+            
+            if (swiperElement) {
+                console.log('Elemento Swiper encontrado, criando instância...');
+                const swiper = new Swiper('#tutoriais .swiper', {
+                    loop: true,
+                    slidesPerView: 1,
+                    spaceBetween: 24,
+                    touchRatio: 1,
+                    touchAngle: 45,
+                    grabCursor: true,
+                    pagination: {
+                        el: '#tutoriais .swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '#tutoriais .swiper-button-next',
+                        prevEl: '#tutoriais .swiper-button-prev',
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 1,
+                        },
+                        1024: {
+                            slidesPerView: 1,
+                        }
+                    }
+                });
+                console.log('Swiper inicializado com sucesso:', swiper);
+            } else {
+                console.error('Elemento Swiper não encontrado no DOM');
+            }
+        });
+
+        // Inicialização do Swiper
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM carregado, iniciando Swiper...');
+            const swiperElement = document.querySelector('.mySwiper');
+            
+            if (swiperElement) {
+                console.log('Elemento Swiper encontrado, criando instância...');
+                const swiper = new Swiper('.mySwiper', {
+                    loop: true,
+                    slidesPerView: 1,
+                    spaceBetween: 24,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 2,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                        }
+                    }
+                });
+                console.log('Swiper inicializado com sucesso:', swiper);
+            } else {
+                console.error('Elemento Swiper não encontrado no DOM');
+            }
+        });
+
+        // Fecha o lightbox ao clicar no botão de fechar
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeButton = document.querySelector('.lightbox-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', closeLightbox);
+            }
+
+            // Previne que cliques dentro do conteúdo do lightbox fechem ele
+            const lightboxContent = document.querySelector('.lightbox-content');
+            if (lightboxContent) {
+                lightboxContent.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+
+            // Adiciona os ícones para a seção de Regras
+            const validityIcon = document.getElementById('validity-icon');
+            const salesIcon = document.getElementById('sales-icon');
+            const paymentIcon = document.getElementById('payment-icon');
+
+            if (validityIcon) validityIcon.textContent = '30/06/2025';
+            if (salesIcon) salesIcon.textContent = '1º mês';
+            if (paymentIcon) paymentIcon.textContent = '10 dias';
+        });
+
+        // Adiciona os ícones para a seção de Regras
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('validity-icon').textContent = '30/06/2025';
+            document.getElementById('sales-icon').textContent = '1º mês';
+            document.getElementById('payment-icon').textContent = '10 dias';
+        });
+
+        // Função para controlar as abas
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://campaigns.sdwc.me/lista-espera/logo.png" alt="Sandwiche" height="32">
+            </div>
+                <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-primary">Quero ganhar agora</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        <div class="mobile-menu">
+            <a href="#como-funciona">Participe em Apenas 3 Passos</a>
+            <a href="#segmentos">Categorias para começar a vender agora</a>
+            <a href="#comissoes">Trilha de Crescimento Sandwiche</a>
+            <a href="#ciclos">Como funcionam os ciclos</a>
+            <a href="#beneficios">Por Que Participar do Programa de Bônus?</a>
+            <a href="#numeros">Números que Impressionam</a>
+            <a href="#tutoriais">Passo a passo com tutoriais em vídeo</a>
+            <a href="#faq">Dúvidas Frequentes</a>
+            <a href="#regulamento">Regras Principais do Programa</a>
+            <a href="#afiliar">Ainda Não É Afiliado?</a>
+            <a href="#contato">Ficou Alguma Dúvida?</a>
+            <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-primary">Quero Ganhar Agora</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ganhe até 1.000 reais de bônus pelas suas vendas no Sandwiche!</h1>
+            <p>Com a Trilha de Crescimento Sandwiche, você ganha recompensas por cada venda feita com os links das marcas do nosso Hub de Afiliados.</p>
+            <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-primary">Quero Ganhar Agora</a>
+        </div>
+        <div class="hero-background"></div>
+    </section>
+
+    <section id="como-funciona" class="features">
+        <h2 class="section-title">Participe em Apenas 3 Passos</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-number">1</div>
+                <h3>Cadastre-se nas marcas</h3>
+                <p>Escolha as marcas que você gostaria de recomendar para sua audiência</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">2</div>
+                <h3>Realize Vendas</h3>
+                <p>Faça as vendas por meio do hub de marcas do Sandwiche, usando seus links de afiliado.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">3</div>
+                <h3>Receba Seus Bônus</h3>
+                <p>Conforme as vendas nos três primeiros meses, você ganha bônus adicionais, além das comissões usuais.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-secondary">Ganhe Mais Agora</a>
+        </div>
+    </section>
+
+    <section class="features" id="segmentos">
+        <div>
+            <h2 class="section-title">Categorias para começar a vender agora</h2>
+            <p style="text-align: center; color: #444; margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Mais de 70 marcas famosas, comissionamento fácil e links prontos pra você sair vendendo.
+            </p>
+            <div class="features-grid" style="gap: 2.5rem;">
+    <!-- Card: Beleza -->
+                <div style="background: white; padding: 2.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--text-color);">Beleza e cosméticos</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-eudora.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-oboticario.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-belezanaweb.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-maccosmeticos.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+      </div>
+    </div>
+
+    <!-- Card: Moda -->
+                <div style="background: white; padding: 2.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--text-color);">Moda</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-renner.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-c&a.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-animale.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-schutz.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+      </div>
+    </div>
+
+    <!-- Card: Outros -->
+                <div style="background: white; padding: 2.5rem; border-radius: 20px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05);">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--text-color);">Outros</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-aliexpress.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-puma.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-brastemp.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+                        <img src="https://sandwiche.me/assets/imgs/brands-logos/logo-stanley.png" style="width: 100%; height: auto; border-radius: 12px; padding: 0.5rem; background: #F8F8F8; transition: all 0.3s ease;">
+      </div>
+    </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; align-items: center;">
+                <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-secondary">GANHE MAIS AGORA</a>
+                <a href="#" onclick="openLightbox(); return false;" class="secondary-button">VER COMISSÕES</a>
+            </div>
+  </div>
+</section>
+
+<section class="features" id="comissoes">
+    <h2 class="section-title">Trilha de Crescimento Sandwiche</h2>
+        <p style="text-align: center; margin-top: 1rem; padding: 0 1rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+            Para entrar oficialmente na Trilha de Crescimento Sandwiche e começar a acumular benefícios, o primeiro passo é atingir o nível Gold , com base no volume de vendas nos seus 3 primeiros ciclos como afiliado. Veja os níveis e Recompensas a cada 3 ciclos:
+        </p>
+        <div style="margin-top: 2rem;">
+            <div class="growth-path">
+                <div class="growth-card">
+                    <div class="growth-header gold">
+                        <span class="growth-icon">🥇</span>
+                        <h3>Gold</h3>
+                    </div>
+                    <div class="growth-content">
+                        <div class="growth-item">
+                            <strong>Valor de vendas em 3 ciclos:</strong>
+                            <p>R$ 500 a R$ 1.000</p>
+                        </div>
+                        <div class="growth-item">
+                            <strong>Benefícios Recebidos:</strong>
+                            <ul>
+                                <li>Comissão</li>
+                                <li>1 mês grátis no Store Pro</li>
+                                <li>R$ 100 em voucher iFood</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="growth-card">
+                    <div class="growth-header platinum">
+                        <span class="growth-icon">💎</span>
+                        <h3 style="color: #000;">Platinum</h3>
+                    </div>
+                    <div class="growth-content">
+                        <div class="growth-item">
+                            <strong>Valor de vendas em 3 ciclos:</strong>
+                            <p>R$ 1.001 a R$ 5.000</p>
+                        </div>
+                        <div class="growth-item">
+                            <strong>Benefícios Recebidos:</strong>
+                            <ul>
+                                <li>Comissão</li>
+                                <li>3 meses grátis no Store Pro</li>
+                                <li>R$ 500 de Bônus</li>
+                                <li>Kit mensal</li>
+                                <li>Kit de presente exclusivo Sandwiche</li>
+                                <li>Selo Sandwiche Vendedor</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="growth-card">
+                    <div class="growth-header black">
+                        <span class="growth-icon">🏆</span>
+                        <h3 style="color: white;">Black</h3>
+                    </div>
+                    <div class="growth-content">
+                        <div class="growth-item">
+                            <strong>Valor de vendas em 3 ciclos:</strong>
+                            <p>R$ 5.001 a R$ 10.000</p>
+                        </div>
+                        <div class="growth-item">
+                            <strong>Benefícios Recebidos:</strong>
+                            <ul>
+                                <li>Comissão</li>
+                                <li>6 meses grátis no Store Pro</li>
+                                <li>Até R$ 1.000 de Bônus</li>
+                                <li>Kit de presente exclusivo Sandwiche</li>
+                                <li>Selo Sandwiche Vendedor</li>
+                                <li>Suporte exclusivo</li>
+                                <li>Acesso a eventos exclusivos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-secondary">
+            Suba de Nível Agora
+        </a>
+    </div>
+</section>
+
+    <section class="features" id="ciclos">
+        <h2 class="section-title">Como funcionam os ciclos de venda do Sandwiche?</h2>
+        
+        <div class="tabs-container">
+            <div class="tabs-buttons">
+                <button class="tab-button active" onclick="openTab(event, 'geral')"><span>Geral</span></button>
+                <button class="tab-button" onclick="openTab(event, 'condicoes')"><span>Condições</span></button>
+            </div>
+
+            <div id="geral" class="tab-content active">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Duração dos Ciclos</h3>
+                        <p>Cada ciclo tem duração de <strong>21 dias</strong>.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                        </div>
+                        <h3>Avaliação Periódica</h3>
+                        <p><strong>A cada 3 ciclos consecutivos</strong> (ou seja, a cada 63 dias), seu <strong>status na Trilha é avaliado</strong> com base nas vendas acumuladas nesse período.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+                        <h3>Mudança de Nível</h3>
+                        <p>Você <strong>pode subir, manter ou descer de nível</strong>, de acordo com sua performance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </div>
+                        <h3>Inatividade</h3>
+                        <p>Se <strong>não houver nenhuma venda durante 6 ciclos seguidos</strong>, você será <strong>removido da Trilha e terá sua afiliação nas marcas do Hub de Afiliados cancelada</strong> por 3 ciclos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="condicoes" class="tab-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: white; border-radius: 24px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--text-color); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Regras de Recompensas</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--primary-color);">•</span>
+                                <strong>Você só pode receber os benefícios de cada nível uma única vez.</strong>
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--primary-color);">•</span>
+                                Caso atinja um nível e depois desça, <strong>não recebe novamente os prêmios</strong> se voltar a ele.
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--primary-color);">•</span>
+                                <strong>A data de início do seu primeiro ciclo é definida</strong> a partir do momento em que você se afilia a <strong>pelo menos uma marca</strong> pelo Hub de Afiliado Sandwiche.
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--primary-color);">•</span>
+                                Ao atingir um novo nível, você <strong>recebe as recompensas daquele nível no começo do ciclo seguinte</strong>.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; border-radius: 24px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--text-color); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Exemplo Prático</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--primary-color);">•</span>
+                                <strong>Dia 1:</strong> Você se afilia a uma marca → seu primeiro ciclo começa.
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--primary-color);">•</span>
+                                <strong>Dia 63</strong> (fim do 3º ciclo): Você acumulou R$ 1.200 em vendas → entra no nível Platinum e recebe os benefícios.
+                            </li>
+                            <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                                <span style="position: absolute; left: 0; color: var(--primary-color);">•</span>
+                                <strong>Ciclos seguintes:</strong> Se mantiver ou aumentar as vendas, pode subir para o nível Black. Se as vendas caírem, pode voltar ao Gold (mas sem repetir os prêmios já recebidos anteriormente).
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="beneficios">
+        <div class="products-content">
+            <h2 class="section-title">Por Que Participar do Programa de Bônus?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                            <path d="M12 2V6M12 6L15.09 8.26M12 6L8.91 8.26"/>
+                    </svg>
+                    </div>
+                    <h3>Recomende produtos das marcas que gosta</h3>
+                    <p>Ganhe dinheiro recomendando os produtos que voce ja conhece, sem gastar dinheiro comprando esses produtos</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                            <line x1="7" y1="7" x2="7.01" y2="7"/>
+                    </svg>
+                    </div>
+                    <h3>Bônus Atraentes</h3>
+                    <p>Ganhe até R$500,00 pelo desempenho das vendas nos primeiros meses</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    </div>
+                    <h3>Simples e Descomplicado</h3>
+                    <p>Basta vender usando nossos links ou indicar novos afiliados. O Sandwiche cuida do resto</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM7 10.82C5.84 10.4 5 9.3 5 8V7h2v3.82zM19 8c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+                    </svg>
+                    </div>
+                    <h3>Recebimento Garantido</h3>
+                    <p>Pagamentos até o 10º dia útil do mês seguinte à apuração</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V5c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/>
+                    </svg>
+                    </div>
+                    <h3>Suporte Exclusivo</h3>
+                    <p>Equipe pronta para tirar dúvidas e ajudar na melhor estratégia de vendas</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-secondary">Quero Aproveitar Esses Benefícios</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="numeros">
+        <h2 class="section-title">Números que Impressionam</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="highlight-number" id="bonus-icon">R$ 1.000</span>
+                <p>Valor máximo de bônus que você pode ganhar</p>
+            </div>
+            <div class="feature-card">
+                <span class="highlight-number" id="time-icon">10 dias</span>
+                <p>Prazo máximo para receber seu pagamento após apuração</p>
+            </div>
+            <div class="feature-card">
+                <span class="highlight-number" id="period-icon">3 meses</span>
+                <p>Período para acumular bônus nas suas vendas</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="features" id="tutoriais">
+        <div>
+            <h2 class="section-title">Passo a passo com tutoriais em vídeo</h2>
+            <p style="text-align: center; color: #444; margin-bottom: 3rem;">Assista aos vídeos e comece a vender com facilidade.</p>
+            
+            <!-- Swiper -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="tutorial-card">
+                            <h3>Como me afiliar</h3>
+                            <div class="video-container">
+                                <iframe src="https://www.loom.com/embed/d6cf44d977e54e25ad91a47f9cb3f10d?sid=4af4dd7f-88e6-4c8a-9502-ce44d116c728" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen loading="lazy"></iframe>
+    </div>
+    </div>
+    </div>
+
+                    <div class="swiper-slide">
+                        <div class="tutorial-card">
+                            <h3>Como criar meus links e compartilhar – Parte 1</h3>
+                            <div class="video-container">
+                                <iframe src="https://www.loom.com/embed/20da9cb0a8924d22adb9c2115bc57844?sid=3c575275-6225-4974-a803-770477ffb7b9" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen loading="lazy"></iframe>
+    </div>
+    </div>
+  </div>
+
+                    <div class="swiper-slide">
+                        <div class="tutorial-card">
+                            <h3>Como criar meus links e compartilhar – Parte 2</h3>
+                            <div class="video-container">
+                                <iframe src="https://www.loom.com/embed/3c562594be5343fd90ebb108ee31450c?sid=09535fb7-60ce-4494-bd0b-e40ebd2606e5" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen loading="lazy"></iframe>
+    </div>
+    </div>
+    </div>
+
+                    <div class="swiper-slide">
+                        <div class="tutorial-card">
+                            <h3>Como criar meus links e compartilhar – Parte 3</h3>
+                            <div class="video-container">
+                                <iframe src="https://www.loom.com/embed/8fa449b57a0f4d43aab6b5e8cbb7e3ff?sid=488ed692-8f55-4c96-a3f0-cdf190efbfb8" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+    </div>
+
+                    <div class="swiper-slide">
+                        <div class="tutorial-card">
+                            <h3>Como acompanhar minhas vendas e comissões</h3>
+                            <div class="video-container">
+                                <iframe src="https://www.loom.com/embed/e4cebf02d13d4f60adeb6a35f45ddd8c?sid=097bae97-7635-49eb-bd45-bce354bb4f9d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+    </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-secondary">Ganhe Mais Agora</a>
+            </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+    <div class="faq-content">
+        <h2 class="section-title">Dúvidas Frequentes</h2>
+        <div class="faq-item">
+            <h3>O que é a Trilha de Crescimento Sandwiche?</h3>
+            <p>É um programa de reconhecimento que premia afiliados conforme o volume de vendas. Quanto mais você vende, maiores os benefícios.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Como faço para entrar na Trilha?</h3>
+            <p>Você precisa alcançar ao menos R$ 500 em vendas para atingir o nível Gold e entrar oficialmente na trilha.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Meu nível pode mudar?</h3>
+            <p>Sim! A cada 4 ciclos (4 meses), seu desempenho é reavaliado, e você pode subir ou descer de nível.</p>
+        </div>
+        <div class="faq-item">
+            <h3>O que acontece se eu parar de vender?</h3>
+            <p>Se você passar 6 ciclos (aproximadamente 4 meses) sem nenhuma venda, será removido da Trilha.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Quem pode participar?</h3>
+            <p>Qualquer pessoa com conta ativa e e-mail validado no Sandwiche, maior de 18 anos.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Quando recebo meu pagamento?</h3>
+            <p>O pagamento ocorre até o 10º dia útil do mês subsequente ao mês de apuração das vendas.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Posso indicar mais de uma pessoa?</h3>
+            <p>Sim, cada novo Afiliado que atingir as metas de vendas pode gerar uma nova comissão.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Existe limite de indicações?</h3>
+            <p>Não há limite, mas cada pessoa só pode ser indicada por um único usuário.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Preciso ter CNPJ para participar?</h3>
+            <p>Não, mas verifique os requisitos para saque e dados bancários em nosso Regulamento.</p>
+        </div>
+    </div>
+</section>
+
+    <section class="regulation-section" id="regulamento">
+        <div class="regulation-content">
+            <h2 class="section-title">Regras Principais do Programa</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <!--span class="highlight-number" id="validity-icon"></span-->
+                    <h3>Validade</h3>
+                    <p>Programa ativo até 30/06/2025</p>
+                </div>
+                <div class="feature-card">
+                    <!--sspan class="highlight-number" id="sales-icon"></span-->
+                    <h3>Critérios de Vendas</h3>
+                    <p>O período de apuração é o primeiro mês para cada novo Afiliado</p>
+                </div>
+                <div class="feature-card">
+                    <!--sspan class="highlight-number" id="payment-icon"></span-->
+                    <h3>Pagamento</h3>
+                    <p>Bônus creditado até o 10º dia útil do mês seguinte</p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem;">O Sandwiche pode modificar ou encerrar o programa conforme seus Termos de Uso.</p><br/>
+
+            <a href="https://drive.google.com/file/d/1G9FUyXqV2dnhqV1pWUkAq_gmgL0s0fz5/view?usp=sharing" class="secondary-button" target="_blank">Leia o Regulamento Completo</a>
+        </div>
+    </section>
+
+    <section class="faq-section" id="afiliar">
+        <h2 class="section-title">Ainda Não É Afiliado? Comece Hoje Mesmo!</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Basta se cadastrar para ter acesso às marcas disponíveis e começar a ganhar.</p>
+        <div style="text-align: center;">
+            <a href="https://admin.sandwiche.me/login?openScreen=affiliateList" class="btn btn-secondary">Quero Me Cadastrar</a>
+        </div>
+    </section>
+
+    <section class="features" id="contato">
+        <h2 class="section-title">Ficou Alguma Dúvida? Fale Conosco!</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Estamos prontos para ajudar você a crescer com o Sandwiche.</p>
+        <div style="text-align: center;">
+            <a href="https://api.whatsapp.com/send/?phone=5511916847189&text=Quero+ajuda+com+meu+bonus&type=phone_number&app_absent=0" 
+               class="btn btn-secondary" target="_blank">Falar no WhatsApp</a>
+        </div>
+    </section>
+
+    <a href="https://api.whatsapp.com/send/?phone=5511916847189&text=Quero+ajuda+com+meu+bonus&type=phone_number&app_absent=0" 
+       class="whatsapp-button" target="_blank">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.4 3.6C18.2 1.4 15.2 0 12 0C5.4 0 0 5.4 0 12C0 14.1 0.6 16.1 1.7 17.9L0 24L6.3 22.3C8 23.3 10 23.9 12 23.9C18.6 23.9 24 18.5 24 11.9C24 8.7 22.6 5.8 20.4 3.6ZM12 21.9C10.2 21.9 8.5 21.3 7 20.4L6.7 20.2L2.9 21.2L3.9 17.5L3.7 17.2C2.7 15.6 2.2 13.8 2.2 12C2.2 6.6 6.6 2.2 12 2.2C14.7 2.2 17.2 3.3 19.1 5.2C21 7.1 22.1 9.6 22.1 12.3C22.1 17.7 17.7 21.9 12 21.9ZM17.4 14.5C17.1 14.4 15.6 13.7 15.4 13.6C15.1 13.5 14.9 13.5 14.7 13.8C14.5 14.1 13.9 14.8 13.7 15C13.5 15.2 13.3 15.2 13 15.1C12.7 15 11.7 14.7 10.5 13.6C9.6 12.8 9 11.8 8.8 11.5C8.6 11.2 8.8 11 9 10.8C9.2 10.6 9.4 10.3 9.5 10.1C9.6 9.9 9.7 9.7 9.8 9.5C9.9 9.3 9.8 9.1 9.7 8.9C9.6 8.7 9 7.2 8.7 6.6C8.4 6 8.1 6.1 7.9 6.1H7.3C7.1 6.1 6.8 6.2 6.5 6.5C6.2 6.8 5.5 7.5 5.5 9C5.5 10.5 6.6 12 6.7 12.2C6.8 12.4 9 15.9 12.4 17.2C13.2 17.6 13.8 17.8 14.3 17.9C15.1 18.2 15.8 18.2 16.4 18.1C17 18 18.2 17.4 18.5 16.7C18.8 16 18.8 15.4 18.7 15.3C18.6 15.2 18.4 15.1 17.4 14.5Z" fill="white"/>
+        </svg>
+    </a>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <div>
+                <h3>Sandwiche</h3>
+                <p>Seu sucesso é nosso sucesso.</p>
+                <p>São Paulo - SP</p>
+            </div>
+            <div>
+                <h3>Contato</h3>
+                <p>suporte@sandwiche.com</p>
+                <p style="color: white !important; -webkit-text-fill-color: white !important;">+55 (11) 91684-7189</p>
+            </div>
+            <div class="social-links">
+                <h3>Redes Sociais</h3>
+                <p><a href="https://www.instagram.com/sandwiche.me/" target="_blank">Instagram</a></p>
+                <p><a href="https://www.linkedin.com/company/sandwiche/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="comissoes-lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <h2>Veja algumas comissões</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Marcas</th>
+                        <th>Até</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Stanley</td>
+                        <td>14%</td>
+                    </tr>
+                    <tr>
+                        <td>Centauro</td>
+                        <td>11.7%</td>
+                    </tr>
+                    <tr>
+                        <td>Renner</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>Schutz</td>
+                        <td>8%</td>
+                    </tr>
+                    <tr>
+                        <td>AliExpress</td>
+                        <td>8%</td>
+                    </tr>
+                    <tr>
+                        <td>Puma</td>
+                        <td>8%</td>
+                    </tr>
+                    <tr>
+                        <td>Brastemp</td>
+                        <td>8%</td>
+                    </tr>
+                    <tr>
+                        <td>O Boticário</td>
+                        <td>6%</td>
+                    </tr>
+                    <tr>
+                        <td>Animale</td>
+                        <td>6%</td>
+                    </tr>
+                    <tr>
+                        <td>C&A</td>
+                        <td>5%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html> 
