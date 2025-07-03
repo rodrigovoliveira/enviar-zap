@@ -44,15 +44,6 @@ ZapFlow é uma aplicação web que permite o envio automatizado de mensagens via
 - [x] Validação de números de telefone
 - [x] Configurações persistentes
 
-## 🚀 Próximos Desenvolvimentos
-
-1. Sistema de logs e histórico de envios
-2. Dashboard com métricas de envio
-3. Mapeamento avançado de colunas CSV
-4. Agendamento de envios
-5. Templates de mensagens salvos
-6. Integração com múltiplas contas WhatsApp
-
 ## 💻 Tecnologias Utilizadas
 
 - Frontend: React.js + TypeScript
