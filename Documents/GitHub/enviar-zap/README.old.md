@@ -1,8 +1,8 @@
-# ZapFlow - Automatização de Envios WhatsApp
+# Mandar Whats - Automatização de Envios WhatsApp
 
 ## 📱 Sobre o Produto
 
-ZapFlow é uma aplicação web que permite o envio automatizado de mensagens via WhatsApp Web para múltiplos contatos, com suporte a personalização de mensagens através de variáveis e controle de intervalos de envio.
+Mandar Whats é uma aplicação web que permite o envio automatizado de mensagens via WhatsApp Web para múltiplos contatos, com suporte a personalização de mensagens através de variáveis e controle de intervalos de envio.
 
 ## 🎯 MVP (Minimum Viable Product)
 

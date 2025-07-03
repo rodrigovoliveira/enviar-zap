@@ -274,10 +274,15 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Envio em Massa para WhatsApp</h1>
-        <p className="text-gray-600">
-          Envie mensagens personalizadas para múltiplos contatos no WhatsApp
-        </p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Envio em Massa de Mensagens no WhatsApp</h1>
+        <div className="max-w-4xl mx-auto text-gray-600 text-lg leading-relaxed mb-6">
+          <p className="mb-4">
+            Precisa enviar mensagens para vários contatos no WhatsApp de forma rápida e automatizada? Nossa ferramenta de envio em massa permite disparar mensagens personalizadas diretamente pelo WhatsApp Web, sem precisar de instalações complicadas.
+          </p>
+          <p className="text-base">
+            Basta subir um arquivo CSV com os números e mensagens, e nós cuidamos do resto. Ideal para negócios, suporte, vendas e marketing direto.
+          </p>
+        </div>
       </div>
 
       <div className="space-y-8">
@@ -574,6 +579,34 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Seção SEO - Palavras-chave relacionadas */}
+      <div className="mt-12 max-w-4xl mx-auto">
+        <div className="bg-gray-50 rounded-lg p-6">
+          <h2 className="text-lg font-semibold text-gray-800 mb-3">Ferramentas Relacionadas</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+            <div>
+              <h3 className="font-medium text-gray-700 mb-2">Envio Individual</h3>
+              <ul className="space-y-1">
+                <li>• <a href="/enviar-whatsapp-sem-contato" className="text-blue-600 hover:underline">Enviar WhatsApp sem salvar contato</a></li>
+                <li>• <a href="/enviar-whatsapp-sem-contato" className="text-blue-600 hover:underline">Mandar mensagem WhatsApp sem adicionar</a></li>
+                <li>• <a href="/enviar-whatsapp-sem-contato" className="text-blue-600 hover:underline">WhatsApp sem contato salvo</a></li>
+                <li>• <a href="/enviar-whatsapp-sem-contato" className="text-blue-600 hover:underline">Link direto para WhatsApp</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-700 mb-2">Envio em Massa</h3>
+              <ul className="space-y-1">
+                <li>• Envio em massa WhatsApp</li>
+                <li>• Disparo WhatsApp múltiplos contatos</li>
+                <li>• Ferramenta WhatsApp marketing</li>
+                <li>• Enviar mensagens automáticas WhatsApp</li>
+                <li>• Bulk WhatsApp Web</li>
+              </ul>
             </div>
           </div>
         </div>
