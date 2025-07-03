@@ -1,81 +1,75 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SendingConfig as SendingConfigType } from '../types';
 
 interface SendingConfigProps {
-  onConfigChange: (config: SendingConfigType) => void;
+  config: SendingConfigType;
+  onChange: (config: SendingConfigType) => void;
 }
 
-export const SendingConfig: React.FC<SendingConfigProps> = ({ onConfigChange }) => {
-  const [config, setConfig] = useState<SendingConfigType>({
-    messageInterval: 5,
-    blockSize: 5,
-    blockPause: 2
-  });
-
+export const SendingConfig: React.FC<SendingConfigProps> = ({ config, onChange }) => {
   const handleChange = (field: keyof SendingConfigType, value: number) => {
-    const newConfig = { ...config, [field]: value };
-    setConfig(newConfig);
-    onConfigChange(newConfig);
+    onChange({
+      ...config,
+      [field]: value
+    });
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 bg-white p-4 rounded-lg shadow">
+      <h3 className="text-lg font-medium text-gray-900 mb-4">Configurações de Envio</h3>
+      
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="messageInterval" className="block text-sm font-medium text-gray-700">
           Intervalo entre mensagens (segundos)
         </label>
-        <input
-          type="number"
-          min="1"
-          max="30"
-          value={config.messageInterval}
-          onChange={(e) => handleChange('messageInterval', parseInt(e.target.value))}
-          className="w-full p-2 border rounded"
-        />
-        <p className="text-xs text-gray-500 mt-1">
-          Mínimo: 1s, Máximo: 30s
-        </p>
+        <div className="mt-1">
+          <input
+            type="number"
+            id="messageInterval"
+            min={10}
+            max={60}
+            value={config.messageInterval}
+            onChange={(e) => handleChange('messageInterval', Math.max(10, Math.min(60, parseInt(e.target.value) || 10)))}
+            className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          />
+        </div>
+        <p className="mt-1 text-sm text-gray-500">Tempo de espera entre cada mensagem (10-60 segundos)</p>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Tamanho do bloco de mensagens
+        <label htmlFor="blockSize" className="block text-sm font-medium text-gray-700">
+          Tamanho do bloco
         </label>
-        <input
-          type="number"
-          min="1"
-          max="10"
-          value={config.blockSize}
-          onChange={(e) => handleChange('blockSize', parseInt(e.target.value))}
-          className="w-full p-2 border rounded"
-        />
-        <p className="text-xs text-gray-500 mt-1">
-          Mínimo: 1, Máximo: 10 mensagens por bloco
-        </p>
+        <div className="mt-1">
+          <input
+            type="number"
+            id="blockSize"
+            min={1}
+            max={20}
+            value={config.blockSize}
+            onChange={(e) => handleChange('blockSize', Math.max(1, Math.min(20, parseInt(e.target.value) || 1)))}
+            className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          />
+        </div>
+        <p className="mt-1 text-sm text-gray-500">Quantidade de mensagens por bloco (1-20 mensagens)</p>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="blockPause" className="block text-sm font-medium text-gray-700">
           Pausa entre blocos (minutos)
         </label>
-        <input
-          type="number"
-          min="1"
-          max="10"
-          value={config.blockPause}
-          onChange={(e) => handleChange('blockPause', parseInt(e.target.value))}
-          className="w-full p-2 border rounded"
-        />
-        <p className="text-xs text-gray-500 mt-1">
-          Mínimo: 1min, Máximo: 10min
-        </p>
-      </div>
-
-      <div className="p-4 bg-blue-50 rounded">
-        <h4 className="font-medium text-blue-800 mb-2">Estimativa de tempo</h4>
-        <p className="text-sm text-blue-600">
-          {`Com essas configurações, o envio de ${config.blockSize} mensagens levará aproximadamente ${(config.blockSize * config.messageInterval) / 60} minutos por bloco, com pausas de ${config.blockPause} minutos entre blocos.`}
-        </p>
+        <div className="mt-1">
+          <input
+            type="number"
+            id="blockPause"
+            min={1}
+            max={60}
+            value={config.blockPause}
+            onChange={(e) => handleChange('blockPause', Math.max(1, Math.min(60, parseInt(e.target.value) || 1)))}
+            className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          />
+        </div>
+        <p className="mt-1 text-sm text-gray-500">Tempo de espera entre blocos de mensagens (1-60 minutos)</p>
       </div>
     </div>
   );

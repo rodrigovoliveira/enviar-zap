@@ -5,10 +5,11 @@ import Picker from '@emoji-mart/react';
 import { MessageTemplate } from '../types';
 
 const VARIABLES = [
-  { id: 'value1', name: 'value1' },
-  { id: 'value2', name: 'value2' },
-  { id: 'value3', name: 'value3' },
-  { id: 'value4', name: 'value4' }
+  { id: 'valor1', name: 'Variável 1' },
+  { id: 'valor2', name: 'Variável 2' },
+  { id: 'valor3', name: 'Variável 3' },
+  { id: 'valor4', name: 'Variável 4' },
+  { id: 'valor5', name: 'Variável 5' }
 ];
 
 interface MessageEditorProps {
@@ -27,7 +28,6 @@ export const MessageEditor: React.FC<MessageEditorProps> = ({ onMessageChange })
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Se clicou fora do emoji picker e do botão de emoji, fecha o picker
       if (
         showEmojiPicker &&
         emojiPickerRef.current &&
@@ -46,10 +46,8 @@ export const MessageEditor: React.FC<MessageEditorProps> = ({ onMessageChange })
   }, [showEmojiPicker]);
 
   const handleMessageChange = (content: string) => {
-    // Se o conteúdo for só espaços em branco, considera como vazio
     const cleanContent = content.trim() === '' ? '' : content;
     
-    // O preview agora é exatamente igual ao conteúdo, apenas substituindo as variáveis
     const preview = cleanContent ? cleanContent.replace(
       /{([^}]+)}/g,
       (_, varName) => {
@@ -182,74 +180,65 @@ export const MessageEditor: React.FC<MessageEditorProps> = ({ onMessageChange })
           >
             ~S~
           </button>
-          <select
-            onChange={(e) => {
-              const variable = VARIABLES.find(v => v.id === e.target.value);
-              if (variable) {
-                insertVariable(variable);
-              }
-              e.target.value = ''; // Reset select
-            }}
-            value=""
-            className="px-3 py-1 border rounded text-gray-600 hover:bg-gray-50 border-gray-300 hover:border-blue-400"
-            title="Insira variáveis que serão substituídas para cada contato"
-          >
-            <option value="">📎 Inserir variável...</option>
-            {VARIABLES.map((variable) => (
-              <option key={variable.id} value={variable.id}>
-                {variable.name}
-              </option>
-            ))}
-          </select>
           <button
             ref={emojiButtonRef}
             onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-            className={`px-3 py-1 text-xl rounded border ${
-              showEmojiPicker ? 'bg-blue-100 text-blue-600 border-blue-600' : 'border-gray-300 hover:bg-gray-100 hover:border-blue-400'
-            }`}
-            title="Adicione emojis à sua mensagem como no WhatsApp"
+            className="px-3 py-1 text-xl rounded border border-gray-300 hover:bg-gray-100 hover:border-blue-400"
+            title="Inserir emoji"
           >
-            ☺️
+            😊
           </button>
         </div>
 
-        <div className="relative">
-          <textarea
-            ref={textareaRef}
-            value={message.content}
-            onChange={(e) => handleMessageChange(e.target.value)}
-            placeholder="Digite sua mensagem aqui (opcional)..."
-            className="w-full h-40 p-4 border rounded resize-none pr-12"
-          />
-        </div>
-
         {showEmojiPicker && (
-          <div ref={emojiPickerRef} className="absolute right-0 mt-2 z-10">
+          <div
+            ref={emojiPickerRef}
+            className="absolute z-10 mt-2"
+            style={{ top: '100%', left: 0 }}
+          >
             <Picker
               data={data}
               onEmojiSelect={addEmoji}
               theme="light"
+              locale="pt"
             />
           </div>
         )}
       </div>
 
-      <div className="p-4 border rounded bg-gray-50">
-        <h3 className="font-medium mb-2">Preview:</h3>
-        <div className="whitespace-pre-wrap">
-          <WhatsAppPreview text={message.preview} />
-        </div>
-      </div>
+      <div className="space-y-2">
+        <textarea
+          ref={textareaRef}
+          value={message.content}
+          onChange={(e) => handleMessageChange(e.target.value)}
+          className="w-full h-40 p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="Digite sua mensagem aqui... Use as variáveis disponíveis para personalizar o texto para cada contato."
+        />
 
-      <div className="text-sm text-gray-500">
-        <p>Formatação:</p>
-        <ul className="list-disc list-inside">
-          <li>Use *texto* para negrito</li>
-          <li>Use _texto_ para itálico</li>
-          <li>Use ~texto~ para riscado</li>
-          <li>Use o menu "Inserir Variável" para adicionar variáveis</li>
-          <li>Clique no emoji para adicionar emoticons</li>
-        </ul>
+        <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+          <h3 className="text-sm font-medium text-gray-700 mb-2">Variáveis disponíveis:</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            {VARIABLES.map((variable) => (
+              <div
+                key={variable.id}
+                className="text-sm bg-white p-2 rounded border border-gray-200 cursor-pointer hover:border-blue-400"
+                onClick={() => insertVariable(variable)}
+              >
+                <span className="font-mono text-blue-600">{`{${variable.id}}`}</span>
+                <span className="text-gray-600 ml-2">{variable.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {message.content && (
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Preview:</h3>
+            <div className="bg-white p-3 rounded border border-gray-200 whitespace-pre-wrap">
+              <WhatsAppPreview text={message.preview} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
