@@ -3,14 +3,38 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { usePhoneValidation } from '../hooks/usePhoneValidation';
 import { openWhatsAppChat } from '../utils/whatsapp';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export const DirectMessage: React.FC = () => {
   const [phone, setPhone] = useState('');
   const { validatePhone } = usePhoneValidation();
   const { isValid } = validatePhone(phone);
+  const { trackEvent, trackConversion, trackSessionEvent } = useAnalytics();
 
   const handleSend = () => {
     if (isValid) {
+      // Track evento de envio individual
+      trackEvent({
+        action: 'send_whatsapp',
+        category: 'engagement',
+        label: 'direct_message',
+        custom_parameters: {
+          phone_length: phone.length,
+          has_ddd: phone.length >= 10
+        }
+      });
+
+      // Track conversão
+      trackConversion('direct_whatsapp_send');
+
+      // Track evento no Session Rewind
+      trackSessionEvent('whatsapp_send', {
+        type: 'direct',
+        phone: phone,
+        phone_length: phone.length,
+        has_ddd: phone.length >= 10
+      });
+
       openWhatsAppChat(phone);
     }
   };

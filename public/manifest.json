@@ -1,20 +1,47 @@
 {
   "short_name": "Mandar Whats",
-  "name": "Mandar Whats - Envio de WhatsApp",
+  "name": "Mandar Whats - Envie WhatsApp sem Salvar Contato",
+  "description": "Envie mensagens no WhatsApp sem precisar salvar o contato. Rápido, grátis e direto pelo navegador.",
   "icons": [
     {
       "src": "logo.webp",
       "type": "image/webp",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo.webp",
       "type": "image/webp",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "theme_color": "#25D366",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "scope": "/",
+  "lang": "pt-BR",
+  "categories": ["productivity", "utilities", "communication"],
+  "screenshots": [
+    {
+      "src": "logo.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide"
+    }
+  ]
 }

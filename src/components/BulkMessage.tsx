@@ -6,6 +6,8 @@ import { FileUpload } from './FileUpload';
 import { Contact, MessageTemplate, SendingConfig as SendingConfigType } from '../types';
 import { openWhatsAppChat } from '../utils/whatsapp';
 import { APP_CONFIG } from '../config/app.config';
+import { useAnalytics } from '../hooks/useAnalytics';
+import { useRateLimit } from '../hooks/useRateLimit';
 
 interface BulkMessageProps {
   sendingConfig: SendingConfigType;
@@ -18,6 +20,8 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
 }) => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [messageTemplate, setMessageTemplate] = useState<MessageTemplate>({ content: '', preview: '' });
+  const { trackEvent, trackConversion, trackError, trackSessionEvent } = useAnalytics();
+  const { checkBulkLimit, recordBulkSend, checkSpamLimit, recordRequest } = useRateLimit();
   const [sendingStatus, setSendingStatus] = useState<{
     isActive: boolean;
     currentBlock: number;
@@ -46,6 +50,11 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
     handleConfirm: null
   });
   const [sendingCompleted, setSendingCompleted] = useState(false);
+  const [showEmptyMessageWarning, setShowEmptyMessageWarning] = useState(false);
+  const [pendingSend, setPendingSend] = useState<null | (() => void)>(null);
+
+  // Ref para o campo de texto
+  const messageEditorRef = useRef<HTMLDivElement | null>(null);
 
   const handleContactsFromFile = (newContacts: Contact[]) => {
     setContacts(newContacts);
@@ -84,9 +93,68 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
   };
 
   const handleSendAll = async () => {
-    setSendingCompleted(false);
+    console.log('[BulkMessage] handleSendAll chamado');
+    const validContacts = contacts.filter(contact => contact.phone);
+    console.log('[BulkMessage] Contatos válidos:', validContacts.length);
+    console.log('[BulkMessage] Conteúdo da mensagem:', messageTemplate.content);
+    if (validContacts.length === 0) return;
+    if (!messageTemplate.content || !messageTemplate.content.trim()) {
+      console.log('[BulkMessage] Modal de mensagem vazia exibido. Conteúdo:', messageTemplate.content);
+      setShowEmptyMessageWarning(true);
+      setPendingSend(() => () => handleSendAllContinue());
+      return;
+    }
+    await handleSendAllContinue();
+  };
+
+  const handleSendAllContinue = async () => {
+    setShowEmptyMessageWarning(false);
+    setPendingSend(null);
     const validContacts = contacts.filter(contact => contact.phone);
     if (validContacts.length === 0) return;
+
+    // Verificar rate limiting
+    recordRequest();
+    
+    if (checkSpamLimit()) {
+      setSendingStatus(prev => ({
+        ...prev,
+        error: 'Muitas tentativas. Tente novamente em alguns minutos.',
+        isActive: false
+      }));
+      return;
+    }
+
+    const rateLimitStatus = checkBulkLimit(validContacts.length);
+    if (!rateLimitStatus.canSend) {
+      setSendingStatus(prev => ({
+        ...prev,
+        error: rateLimitStatus.message,
+        isActive: false
+      }));
+      return;
+    }
+
+    // Track início do envio em massa
+    trackEvent({
+      action: 'start_bulk_send',
+      category: 'engagement',
+      label: 'bulk_message',
+      custom_parameters: {
+        total_contacts: validContacts.length,
+        block_size: sendingConfig.blockSize,
+        message_interval: sendingConfig.messageInterval,
+        block_pause: sendingConfig.blockPause
+      }
+    });
+
+    // Track evento no Session Rewind
+    trackSessionEvent('bulk_send_start', {
+      total_contacts: validContacts.length,
+      block_size: sendingConfig.blockSize,
+      message_interval: sendingConfig.messageInterval,
+      block_pause: sendingConfig.blockPause
+    });
 
     // Scroll suave para o topo antes de qualquer outra operação
     window.scrollTo({
@@ -225,18 +293,50 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
         message: "🎉 Envio concluído com sucesso!"
       }));
       setSendingCompleted(true);
+
+      // Track conclusão do envio em massa
+      trackConversion('bulk_send_completed');
+      trackEvent({
+        action: 'bulk_send_completed',
+        category: 'engagement',
+        label: 'bulk_message',
+        value: validContacts.length,
+        custom_parameters: {
+          total_contacts: validContacts.length,
+          total_blocks: numberOfBlocks
+        }
+      });
+
+      // Registrar envio em massa no rate limiting
+      recordBulkSend(validContacts.length);
+
+      // Track evento no Session Rewind
+      trackSessionEvent('bulk_send_completed', {
+        total_contacts: validContacts.length,
+        total_blocks: numberOfBlocks,
+        success: true
+      });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
       setSendingStatus(prev => ({
         ...prev,
-        error: error instanceof Error ? error.message : 'Erro desconhecido',
+        error: errorMessage,
         isActive: false
       }));
       setSendingCompleted(false);
+
+      // Track erro no envio em massa
+      trackError('bulk_send_error', errorMessage);
+
+      // Track evento no Session Rewind
+      trackSessionEvent('bulk_send_error', {
+        error_message: errorMessage,
+        success: false
+      });
     }
   };
 
   const handleReset = () => {
-    // Limpa o status de envio
     setSendingCompleted(false);
     setSendingStatus({
       isActive: false,
@@ -252,23 +352,14 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
       remainingTime: null,
       handleConfirm: null
     });
-
-    // Limpa os contatos e a mensagem
     setContacts([]);
     setMessageTemplate({ content: '', preview: '' });
-
-    // Reseta as configurações para os valores padrão
     onConfigChange({
       messageInterval: APP_CONFIG.DEFAULT_MESSAGE_INTERVAL,
       blockSize: APP_CONFIG.DEFAULT_BLOCK_SIZE,
       blockPause: APP_CONFIG.DEFAULT_BLOCK_PAUSE,
     });
-
-    // Scroll suave para o topo
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -487,7 +578,7 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
       </div>
 
       {/* Passo 2: Composição da Mensagem */}
-      <div className={`bg-white rounded-xl shadow-lg overflow-hidden ${sendingStatus.isActive ? 'opacity-50 pointer-events-none' : ''}`}>
+      <div ref={messageEditorRef} className={`bg-white rounded-xl shadow-lg overflow-hidden ${sendingStatus.isActive ? 'opacity-50 pointer-events-none' : ''}`}>
         <div className="p-6 sm:p-8">
           <div className="flex items-center mb-6">
             <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-green-100 text-green-600 font-semibold text-lg">
@@ -681,6 +772,44 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Modal de aviso para mensagem vazia */}
+      {showEmptyMessageWarning && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+            <h2 className="text-lg font-semibold text-yellow-700 mb-2 flex items-center">
+              <svg className="w-6 h-6 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+              Mensagem vazia
+            </h2>
+            <p className="text-gray-700 mb-4">Você está tentando enviar mensagens sem nenhum texto. Tem certeza que deseja continuar?</p>
+            <div className="flex justify-end gap-2">
+              <button
+                className="px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300"
+                onClick={() => {
+                  setShowEmptyMessageWarning(false);
+                  setPendingSend(null);
+                  if (messageEditorRef.current) {
+                    messageEditorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+              >
+                Adicionar texto
+              </button>
+              <button
+                className="px-4 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600"
+                onClick={() => {
+                  setShowEmptyMessageWarning(false);
+                  if (pendingSend) pendingSend();
+                }}
+              >
+                Continuar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }; 

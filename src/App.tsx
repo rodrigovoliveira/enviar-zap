@@ -10,6 +10,8 @@ import { PoliticaPrivacidade } from './components/PoliticaPrivacidade';
 import { Contact, SendingConfig } from './types';
 import { APP_CONFIG } from './config/app.config';
 import { useSEO } from './hooks/useSEO';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
+import RateLimitBanner from './components/RateLimitBanner';
 
 function App() {
   const [sendingConfig, setSendingConfig] = useState<SendingConfig>({
@@ -55,7 +57,9 @@ function AppContent({ sendingConfig, setSendingConfig }: {
         </div>
       </main>
       
-      <Footer />
+              <Footer />
+        <PWAInstallPrompt />
+        <RateLimitBanner />
     </div>
   );
 }
