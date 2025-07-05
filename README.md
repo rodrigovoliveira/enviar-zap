@@ -5,6 +5,31 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue.svg)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.1-38B2AC.svg)](https://tailwindcss.com/)
 
+---
+
+## 🚀 Novidades e Melhorias Recentes
+
+- **Rate Limiting Inteligente**
+  - Limite de envio em massa por IP/sessão, com cooldown visível e feedback em tempo real.
+  - Banner de limite/cooldown só aparece após o primeiro envio em massa.
+  - Sincronização robusta do estado do rate limit, inclusive entre abas.
+- **PWA e UX**
+  - Banner de instalação PWA customizado, com opção "Agora não" que só reaparece após 1 hora.
+  - Service Worker otimizado: ignora requests externos e não gera erros de cache.
+  - Mensagem de sucesso do envio em massa permanece até ação do usuário.
+- **Validação e Segurança**
+  - Modal de confirmação ao tentar enviar mensagem em massa com campo de texto vazio.
+  - Botão "Adicionar texto" faz scroll suave para o campo de mensagem.
+  - Validação de campos em tempo real, feedback visual e mensagens de erro claras.
+- **Analytics e Monitoramento**
+  - Integração com Google Tag Manager, GA4 e Session Rewind.
+  - Eventos customizados e documentação dos principais eventos de uso.
+- **Performance e Robustez**
+  - Build de produção sempre atualizado, com limpeza de cache e service worker.
+  - Logs de debug para rastreamento de problemas de envio em massa.
+
+---
+
 ## 📱 Sobre o Produto
 
 Mandar Whats é uma aplicação web que permite o envio automatizado de mensagens via WhatsApp Web, com funcionalidades de envio direto e em massa, sem necessidade de salvar contatos. Ferramenta gratuita e otimizada para SEO, ideal para negócios, vendas e marketing direto.
@@ -198,11 +223,13 @@ npm run build
 - **Organization** schema para autor
 
 ### Arquivos de SEO
-- **`/sitemap.xml`** - Mapa do site para indexação
-- **`/robots.txt`** - Diretrizes para crawlers
+- **`/sitemap.xml`** - Mapa do site completo com todas as URLs
+- **`/robots.txt`** - Diretrizes otimizadas para crawlers principais
 - **Header Navigation** - Navegação estruturada
-- **Canonical URLs** - URLs canônicas por página
+- **Canonical URLs** - URLs canônicas dinâmicas por página
 - **Domain**: mandarwhats.com.br
+- **Schema XML** - Estrutura válida e bem formatada
+- **Crawl-delay** - Otimizado para cada crawler (Google, Bing, Yahoo, DuckDuckGo)
 
 ### Performance e Acessibilidade
 - **Lazy loading** de componentes
@@ -471,5 +498,29 @@ Para debug, abra o console do navegador (F12) e verifique:
 - Destaque visual para a página ativa
 - Experiência mobile aprimorada: menu lateral com animação e overlay
 - Links para Termos de Uso e Política de Privacidade acessíveis no menu mobile
+
+## ✅ Checklist para Produção
+
+Antes de considerar o projeto 100% pronto para produção, confira os pontos críticos abaixo:
+
+### Prioridades Críticas
+- [ ] **Configurar HTTPS/SSL** no servidor de produção (obrigatório)
+- [ ] **Forçar HTTPS** e adicionar HSTS Header
+- [ ] **Compressão gzip/brotli** no servidor
+- [ ] **CDN para assets estáticos** (opcional, recomendado)
+- [ ] **Otimização de imagens** (WebP, lazy loading)
+- [ ] **Bundle splitting** e lazy loading de componentes
+- [ ] **Monitoramento de erros** (ex: Sentry) e uptime
+- [ ] **Google Search Console** configurado
+- [ ] **Backup automático e rollback**
+- [ ] **Testar PWA em diferentes dispositivos**
+- [ ] **Testar limites de rate limiting em produção**
+- [ ] **Verificar indexação e SEO no Google**
+- [ ] **Revisar headers de segurança no servidor**
+
+### O que já está pronto
+- Funcionalidades core, rate limiting, PWA, SEO, analytics, LGPD, logs de debug, interface responsiva, validação e segurança já implementados e testados.
+
+> **Dica:** Veja o arquivo `PRODUCTION_CHECKLIST.md` para checklist detalhado de servidor e métricas.
 
 ---

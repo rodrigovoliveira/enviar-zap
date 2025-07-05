@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useAnalytics } from './useAnalytics';
 
 interface SEOConfig {
   title: string;
@@ -55,6 +56,7 @@ const seoConfigs: Record<string, SEOConfig> = {
 
 export const useSEO = () => {
   const location = useLocation();
+  const { trackPageView } = useAnalytics();
 
   useEffect(() => {
     const config = seoConfigs[location.pathname];
@@ -110,6 +112,13 @@ export const useSEO = () => {
         document.head.appendChild(canonical);
       }
       canonical.setAttribute('href', config.canonical);
+
+      // Track page view
+      trackPageView({
+        page_title: config.title,
+        page_location: config.canonical,
+        page_path: location.pathname
+      });
     }
-  }, [location.pathname]);
+  }, [location.pathname, trackPageView]);
 }; 

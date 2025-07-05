@@ -1,9 +1,53 @@
 # https://www.robotstxt.org/robotstxt.html
+# Mandar Whats - Ferramenta de Envio WhatsApp
+# https://mandarwhats.com.br
+
+# Permitir todos os crawlers
 User-agent: *
 Allow: /
+
+# Permitir acesso específico para principais crawlers
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Bloquear acesso a arquivos desnecessários
+Disallow: /examples/
+Disallow: /examples 2/
+Disallow: /manifest 2.json
+Disallow: /robots 2.txt
+Disallow: /sitemap 2.xml
+Disallow: /index 2.html
+Disallow: /logo 2.png
+Disallow: /logo 2.webp
+Disallow: /.DS_Store
+
+# Permitir acesso a recursos importantes
+Allow: /logo.webp
+Allow: /logo.png
+Allow: /manifest.json
+Allow: /sitemap.xml
+Allow: /robots.txt
 
 # Sitemap
 Sitemap: https://mandarwhats.com.br/sitemap.xml
 
-# Crawl-delay
+# Crawl-delay padrão
 Crawl-delay: 1
+
+# Informações adicionais
+# Data de atualização: 2024-01-01
+# Versão: 2.0
+# Contato: https://mandarwhats.com.br
