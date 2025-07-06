@@ -73,6 +73,11 @@ export const DirectMessage: React.FC = () => {
                 containerClass="w-full"
                 buttonClass="border-2 border-gray-300 rounded-l-lg"
                 placeholder="Digite o número do WhatsApp"
+                inputProps={{
+                  autoComplete: 'tel',
+                  name: 'phone',
+                  'aria-label': 'Número do WhatsApp'
+                }}
               />
               {phone && !isValid && (
                 <p className="mt-2 text-sm text-red-600 flex items-center">

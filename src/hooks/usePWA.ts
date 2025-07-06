@@ -27,6 +27,32 @@ export const usePWA = () => {
         .register('/sw.js')
         .then((registration) => {
           console.log('Service Worker registrado:', registration);
+
+          // Força busca por nova versão imediatamente
+          if (registration.update) {
+            registration.update();
+          }
+
+          // Rotina para forçar atualização automática
+          if (registration.waiting) {
+            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+            window.location.reload();
+          }
+
+          registration.onupdatefound = () => {
+            const installingWorker = registration.installing;
+            if (installingWorker) {
+              installingWorker.onstatechange = () => {
+                if (installingWorker.state === 'installed') {
+                  if (navigator.serviceWorker.controller) {
+                    // Nova versão disponível, força update
+                    installingWorker.postMessage({ type: 'SKIP_WAITING' });
+                    window.location.reload();
+                  }
+                }
+              };
+            }
+          };
         })
         .catch((error) => {
           console.error('Erro ao registrar Service Worker:', error);

@@ -8,6 +8,13 @@ declare module 'react-phone-input-2' {
     inputClass?: string;
     containerClass?: string;
     buttonClass?: string;
+    placeholder?: string;
+    inputProps?: {
+      autoComplete?: string;
+      name?: string;
+      'aria-label'?: string;
+      [key: string]: any;
+    };
   }
 
   const PhoneInput: ComponentType<PhoneInputProps>;
