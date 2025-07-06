@@ -7,6 +7,30 @@
 
 ---
 
+## 🆕 Histórico de Melhorias Recentes (Jul/2024)
+
+- **SEO dinâmico e canonical para todas as páginas e posts do blog**
+  - Cada página e cada post do blog agora possuem `<title>`, `<meta description>`, Open Graph, Twitter Card e `<link rel="canonical">` únicos e corretos, gerados dinamicamente.
+  - O hook `useSEO` cobre todas as rotas, inclusive `/blog` e `/blog/:slug`.
+- **Blog estático integrado**
+  - Listagem de artigos em `/blog` e posts individuais em `/blog/:slug`.
+  - SEO otimizado, canonical correto e links funcionais em todos os artigos.
+  - Sitemap.xml e robots.txt atualizados para indexação do blog.
+- **Ajustes de UX no envio em massa**
+  - Status de envio, barra de progresso e botões exibidos corretamente.
+  - Mensagem de sucesso só aparece após o último envio.
+  - Botão de recomeçar/nova campanha visível ao final.
+- **Links do WhatsApp sempre abrindo em nova aba**
+  - Todos os links de envio em massa usam `window.open` com `_blank` e `noopener noreferrer` para evitar bloqueio de pop-up.
+- **Builds e reinicialização do servidor**
+  - Build de produção sempre atualizado após cada alteração relevante.
+  - Servidor local reiniciado automaticamente na porta 8000.
+- **Boas práticas de versionamento e fluxo de trabalho**
+  - Branches de feature, commits semânticos e PRs para homologação.
+  - Testes em ambiente local antes de cada release.
+
+---
+
 ## 🚀 Novidades e Melhorias Recentes
 
 - **Links do WhatsApp Inteligentes por Dispositivo**

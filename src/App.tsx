@@ -12,6 +12,8 @@ import { APP_CONFIG } from './config/app.config';
 import { useSEO } from './hooks/useSEO';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import RateLimitBanner from './components/RateLimitBanner';
+import Blog from './components/Blog';
+import BlogPost from './components/BlogPost';
 
 function App() {
   const [sendingConfig, setSendingConfig] = useState<SendingConfig>({
@@ -50,6 +52,8 @@ function AppContent({ sendingConfig, setSendingConfig }: {
                 onConfigChange={setSendingConfig}
               />
             } />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/termos-de-uso" element={<TermosDeUso />} />
             <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
             <Route path="/" element={<Navigate to="/enviar-whatsapp-sem-contato" replace />} />

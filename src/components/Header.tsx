@@ -41,6 +41,12 @@ export const Header: React.FC = () => {
             >
               Enviar WhatsApp em Massa
             </Link>
+            <Link
+              to="/blog"
+              className={`px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${location.pathname.startsWith('/blog') ? 'bg-green-600 text-white shadow-md' : 'text-gray-700 bg-gray-100 hover:bg-gray-200 hover:text-gray-900'}`}
+            >
+              Blog
+            </Link>
           </nav>
 
           {/* Menu Mobile - Hamburguer */}
@@ -82,6 +88,12 @@ export const Header: React.FC = () => {
             className={`py-3 px-4 rounded-lg text-base font-medium transition-all duration-200 ${location.pathname === '/enviar-whatsapp-em-massa' ? 'bg-green-600 text-white shadow-md' : 'text-gray-700 bg-gray-100 hover:bg-gray-200 hover:text-gray-900'}`}
           >
             Enviar WhatsApp em Massa
+          </Link>
+          <Link
+            to="/blog"
+            className={`py-3 px-4 rounded-lg text-base font-medium transition-all duration-200 ${location.pathname.startsWith('/blog') ? 'bg-green-600 text-white shadow-md' : 'text-gray-700 bg-gray-100 hover:bg-gray-200 hover:text-gray-900'}`}
+          >
+            Blog
           </Link>
           <div className="border-t border-gray-200 my-2" />
           <Link to="/termos-de-uso" className="py-2 px-3 rounded-lg text-base text-gray-500 hover:bg-gray-100">Termos de Uso</Link>
