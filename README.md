@@ -7,8 +7,37 @@
 
 ---
 
+## 🆕 Histórico de Melhorias Recentes (Jul/2024)
+
+- **SEO dinâmico e canonical para todas as páginas e posts do blog**
+  - Cada página e cada post do blog agora possuem `<title>`, `<meta description>`, Open Graph, Twitter Card e `<link rel="canonical">` únicos e corretos, gerados dinamicamente.
+  - O hook `useSEO` cobre todas as rotas, inclusive `/blog` e `/blog/:slug`.
+- **Blog estático integrado**
+  - Listagem de artigos em `/blog` e posts individuais em `/blog/:slug`.
+  - SEO otimizado, canonical correto e links funcionais em todos os artigos.
+  - Sitemap.xml e robots.txt atualizados para indexação do blog.
+- **Ajustes de UX no envio em massa**
+  - Status de envio, barra de progresso e botões exibidos corretamente.
+  - Mensagem de sucesso só aparece após o último envio.
+  - Botão de recomeçar/nova campanha visível ao final.
+- **Links do WhatsApp sempre abrindo em nova aba**
+  - Todos os links de envio em massa usam `window.open` com `_blank` e `noopener noreferrer` para evitar bloqueio de pop-up.
+- **Builds e reinicialização do servidor**
+  - Build de produção sempre atualizado após cada alteração relevante.
+  - Servidor local reiniciado automaticamente na porta 8000.
+- **Boas práticas de versionamento e fluxo de trabalho**
+  - Branches de feature, commits semânticos e PRs para homologação.
+  - Testes em ambiente local antes de cada release.
+
+---
+
 ## 🚀 Novidades e Melhorias Recentes
 
+- **Links do WhatsApp Inteligentes por Dispositivo**
+  - Detecção automática de mobile/desktop/tablet
+  - Links otimizados: `whatsapp://` para mobile, `web.whatsapp.com` para desktop
+  - Fallback automático para `wa.me` quando app não está instalado
+  - Experiência nativa em mobile, web em desktop
 - **Rate Limiting Inteligente**
   - Limite de envio em massa por IP/sessão, com cooldown visível e feedback em tempo real.
   - Banner de limite/cooldown só aparece após o primeiro envio em massa.
@@ -74,7 +103,15 @@ Mandar Whats é uma aplicação web que permite o envio automatizado de mensagen
 - [x] Validação de números de telefone
 - [x] Configurações persistentes
 
-### 5. SEO e Otimização
+### 5. Links do WhatsApp Inteligentes
+- [x] Detecção automática de dispositivo (mobile/desktop/tablet)
+- [x] Links otimizados por plataforma
+- [x] Fallback automático para dispositivos sem app
+- [x] Experiência nativa em mobile, web em desktop
+- [x] Suporte a mudanças de orientação em tablets
+- [x] Hook reutilizável para detecção de dispositivo
+
+### 6. SEO e Otimização
 - [x] Meta tags dinâmicas por página
 - [x] Open Graph e Twitter Cards otimizados
 - [x] Dados estruturados JSON-LD
@@ -100,6 +137,11 @@ Mandar Whats é uma aplicação web que permite o envio automatizado de mensagen
 - **papaparse** para processamento CSV
 - **xlsx** para processamento Excel
 - **emoji-mart** para seleção de emojis
+
+### Links do WhatsApp por Dispositivo
+- **Mobile**: `whatsapp://send?phone=5511999999999&text=mensagem`
+- **Desktop/Tablet**: `https://web.whatsapp.com/send?phone=5511999999999&text=mensagem`
+- **Fallback Universal**: `https://wa.me/5511999999999?text=mensagem`
 
 ### SEO e Performance
 - **Meta tags dinâmicas** com hook personalizado

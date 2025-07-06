@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ContactInput } from './ContactInput';
 import { MessageEditor } from './MessageEditor';
 import { SendingConfig } from './SendingConfig';
@@ -55,6 +55,17 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
 
   // Ref para o campo de texto
   const messageEditorRef = useRef<HTMLDivElement | null>(null);
+  const statusRef = useRef<HTMLDivElement | null>(null);
+
+  // Scroll automático para o status de envio sempre que a mensagem de sucesso aparecer
+  useEffect(() => {
+    if (
+      (sendingStatus.message && (sendingStatus.message.includes('✅') || sendingStatus.message.includes('🎉'))) &&
+      statusRef.current
+    ) {
+      statusRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [sendingStatus.message]);
 
   const handleContactsFromFile = (newContacts: Contact[]) => {
     setContacts(newContacts);
@@ -183,6 +194,8 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
     });
 
     try {
+      let contatoEnviado = 0;
+      let sucessoJaExibido = false;
       for (let blockStart = 0; blockStart < validContacts.length; blockStart += sendingConfig.blockSize) {
         const currentBlock = validContacts.slice(
           blockStart,
@@ -199,13 +212,15 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
         for (let i = 0; i < currentBlock.length; i++) {
           const contact = currentBlock[i];
           const isLastContactInBlock = i === currentBlock.length - 1;
+          const isLastContactOverall = (blockStart + i) === (validContacts.length - 1);
           const nextContact = i < currentBlock.length - 1 ? currentBlock[i + 1] : 
             (blockStart + sendingConfig.blockSize < validContacts.length ? 
               validContacts[blockStart + sendingConfig.blockSize] : null);
           
+          contatoEnviado++;
           setSendingStatus(prev => ({
             ...prev,
-            currentContact: blockStart + i + 1,
+            currentContact: contatoEnviado,
             waitingConfirmation: true,
             error: null,
             message: nextContact ? 
@@ -223,8 +238,11 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
           await new Promise<void>((resolve) => {
             let timeoutId: NodeJS.Timeout;
             let intervalId: NodeJS.Timeout;
+            let confirmClicked = false;
 
             const handleConfirm = () => {
+              if (confirmClicked) return;
+              confirmClicked = true;
               clearTimeout(timeoutId);
               clearInterval(intervalId);
               if (whatsappWindow) {
@@ -247,10 +265,21 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
               timeoutId = setTimeout(() => {
                 clearInterval(intervalId);
                 resolve();
+                // Se for o último contato geral, exibe mensagem de sucesso imediatamente
+                if (isLastContactOverall) {
+                  setSendingStatus(prev => ({
+                    ...prev,
+                    waitingConfirmation: false,
+                    error: null,
+                    message: '🎉 Envio concluído com sucesso!',
+                    isActive: false
+                  }));
+                  setSendingCompleted(true);
+                  sucessoJaExibido = true;
+                }
               }, sendingConfig.messageInterval * 1000);
             };
 
-            // Define o estado inicial de espera pela confirmação
             setSendingStatus(prev => ({
               ...prev,
               startTime: null,
@@ -261,19 +290,21 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
             }));
           });
 
-          setSendingStatus(prev => ({ 
-            ...prev, 
-            waitingConfirmation: false,
-            error: null,
-            message: "✅ Mensagem enviada com sucesso!",
-            handleConfirm: null
-          }));
-
-          if (!isLastContactInBlock) {
-            setSendingStatus(prev => ({
-              ...prev,
-              message: `📱 Próximo envio: ${nextContact?.phone || 'último contato'}`
+          // Se não for o último contato geral, mantém o fluxo normal
+          if (!isLastContactOverall) {
+            setSendingStatus(prev => ({ 
+              ...prev, 
+              waitingConfirmation: false,
+              error: null,
+              message: '✅ Mensagem enviada com sucesso!',
+              handleConfirm: null
             }));
+            if (!isLastContactInBlock) {
+              setSendingStatus(prev => ({
+                ...prev,
+                message: `📱 Próximo envio: ${nextContact?.phone || 'último contato'}`
+              }));
+            }
           }
         }
 
@@ -287,12 +318,15 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
         }
       }
 
-      setSendingStatus(prev => ({
-        ...prev,
-        isActive: false,
-        message: "🎉 Envio concluído com sucesso!"
-      }));
-      setSendingCompleted(true);
+      // Só exibe mensagem de sucesso se não foi exibida dentro do loop
+      if (!sucessoJaExibido) {
+        setSendingStatus(prev => ({
+          ...prev,
+          isActive: false,
+          message: "🎉 Envio concluído com sucesso!"
+        }));
+        setSendingCompleted(true);
+      }
 
       // Track conclusão do envio em massa
       trackConversion('bulk_send_completed');
@@ -376,167 +410,223 @@ export const BulkMessage: React.FC<BulkMessageProps> = ({
       </div>
 
       {/* Seção de Status de Envio */}
-      {sendingStatus.isActive && (
+      {(sendingCompleted && sendingStatus.totalContacts > 0) ? (
         <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-200 pb-4 gap-4">
               <h2 className="text-xl font-semibold text-gray-900">Status do Envio</h2>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <div className="flex items-center space-x-2">
-                  <span className="flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                  </span>
-                  <span className="text-sm font-medium text-gray-500">
-                    Envio em andamento
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => window.location.reload()}
-                    className="px-4 py-2 text-sm font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 flex items-center gap-1 transition-colors"
-                  >
-                    <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                    Cancelar
-                  </button>
-                  <button
-                    onClick={handleReset}
-                    className="px-4 py-2 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 flex items-center gap-1 transition-colors"
-                  >
-                    <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
-                    </svg>
-                    Recomeçar
-                  </button>
-                </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={handleReset}
+                  className="px-4 py-2 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 flex items-center gap-1 transition-colors"
+                >
+                  <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                  </svg>
+                  Novo Envio
+                </button>
               </div>
             </div>
-
             <div className="space-y-6">
               {/* Progresso do Bloco */}
               <div>
                 <div className="flex justify-between text-sm text-gray-600 mb-2">
                   <span>Bloco atual</span>
-                  <span>{sendingStatus.currentBlock} de {sendingStatus.totalBlocks}</span>
+                  <span>{sendingStatus.totalBlocks} de {sendingStatus.totalBlocks}</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-3">
                   <div 
                     className="bg-blue-600 h-3 rounded-full transition-all duration-300"
-                    style={{ width: `${(sendingStatus.currentBlock / sendingStatus.totalBlocks) * 100}%` }}
+                    style={{ width: `100%` }}
                   />
                 </div>
               </div>
-
               {/* Progresso Total */}
               <div>
                 <div className="flex justify-between text-sm text-gray-600 mb-2">
                   <span>Progresso total</span>
-                  <span>{sendingStatus.currentContact} de {sendingStatus.totalContacts} contatos</span>
+                  <span>{sendingStatus.totalContacts} de {sendingStatus.totalContacts} contatos</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-3">
                   <div 
                     className="bg-green-600 h-3 rounded-full transition-all duration-300"
-                    style={{ width: `${(sendingStatus.currentContact / sendingStatus.totalContacts) * 100}%` }}
+                    style={{ width: `100%` }}
                   />
                 </div>
               </div>
-
-              {/* Status Atual */}
-              {sendingStatus.waitingConfirmation && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-yellow-800">Aguardando confirmação de envio</h3>
-                      <div className="mt-2 text-sm text-yellow-700 space-y-1">
-                        <p>1. Envie a mensagem no WhatsApp Web</p>
-                        <p>2. Aguarde {sendingConfig.messageInterval} segundos (tempo mínimo entre envios)</p>
-                        <p>3. Clique no botão abaixo para confirmar e prosseguir</p>
-                      </div>
-                      <div className="mt-4">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (sendingStatus.handleConfirm) {
-                              sendingStatus.handleConfirm();
-                            }
-                          }}
-                          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-yellow-700 bg-yellow-100 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-colors"
-                        >
-                          Confirmar Envio
-                        </button>
-                        {sendingStatus.remainingTime !== null && (
-                          <p className="mt-2 text-sm text-gray-500">
-                            Próximo envio em {sendingStatus.remainingTime}s
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Mensagens de Status */}
-              {sendingStatus.message && (
-                <div className={`${
-                  sendingStatus.message.includes("✅") ? "bg-green-50 border-green-200" : "bg-blue-50 border-blue-200"
-                } border rounded-lg p-4`}>
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      {sendingStatus.message.includes("✅") ? (
-                        <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      ) : (
-                        <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                        </svg>
-                      )}
-                    </div>
-                    <div className="ml-3">
-                      <p className={`text-sm ${
-                        sendingStatus.message.includes("✅") ? "text-green-700" : "text-blue-700"
-                      }`}>
-                        {sendingStatus.message}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Erros */}
-              {sendingStatus.error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm text-red-700">
-                        {sendingStatus.error}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <div className="flex justify-between items-center text-sm text-gray-500 pt-4 border-t border-gray-200">
-                <span>Tempo estimado restante:</span>
-                <span className="font-medium">
-                  {calculateEstimatedTime(sendingStatus.totalContacts - sendingStatus.currentContact + 1)}
-                </span>
+              {/* Mensagem de Sucesso */}
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center">
+                <svg className="h-6 w-6 text-green-500 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-lg font-medium text-green-700">🎉 Envio concluído com sucesso!</span>
               </div>
             </div>
           </div>
         </div>
+      ) : (
+        (sendingStatus.isActive || sendingStatus.waitingConfirmation || sendingStatus.currentContact > 0 || sendingStatus.message || sendingStatus.error) ? (
+          <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-200 pb-4 gap-4">
+                <h2 className="text-xl font-semibold text-gray-900">Status do Envio</h2>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <div className="flex items-center space-x-2">
+                    <span className="flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span className="text-sm font-medium text-gray-500">
+                      Envio em andamento
+                    </span>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => window.location.reload()}
+                      className="px-4 py-2 text-sm font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 flex items-center gap-1 transition-colors"
+                    >
+                      <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                      Cancelar
+                    </button>
+                    <button
+                      onClick={handleReset}
+                      className="px-4 py-2 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 flex items-center gap-1 transition-colors"
+                    >
+                      <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                      </svg>
+                      Recomeçar
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                {/* Progresso do Bloco */}
+                <div>
+                  <div className="flex justify-between text-sm text-gray-600 mb-2">
+                    <span>Bloco atual</span>
+                    <span>{sendingStatus.currentBlock} de {sendingStatus.totalBlocks}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div 
+                      className="bg-blue-600 h-3 rounded-full transition-all duration-300"
+                      style={{ width: `${(sendingStatus.currentBlock / sendingStatus.totalBlocks) * 100}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Progresso Total */}
+                <div>
+                  <div className="flex justify-between text-sm text-gray-600 mb-2">
+                    <span>Progresso total</span>
+                    <span>{sendingStatus.currentContact} de {sendingStatus.totalContacts} contatos</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div 
+                      className="bg-green-600 h-3 rounded-full transition-all duration-300"
+                      style={{ width: `${(sendingStatus.currentContact / sendingStatus.totalContacts) * 100}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Status Atual */}
+                {sendingStatus.waitingConfirmation && (
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <div className="flex">
+                      <div className="flex-shrink-0">
+                        <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <div className="ml-3">
+                        <h3 className="text-sm font-medium text-yellow-800">Aguardando confirmação de envio</h3>
+                        <div className="mt-2 text-sm text-yellow-700 space-y-1">
+                          <p>1. Envie a mensagem no WhatsApp Web</p>
+                          <p>2. Aguarde {sendingConfig.messageInterval} segundos (tempo mínimo entre envios)</p>
+                          <p>3. Clique no botão abaixo para confirmar e prosseguir</p>
+                        </div>
+                        <div className="mt-4">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (sendingStatus.handleConfirm) {
+                                sendingStatus.handleConfirm();
+                              }
+                            }}
+                            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-yellow-700 bg-yellow-100 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-colors"
+                          >
+                            Confirmar Envio
+                          </button>
+                          {sendingStatus.remainingTime !== null && (
+                            <p className="mt-2 text-sm text-gray-500">
+                              Próximo envio em {sendingStatus.remainingTime}s
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Mensagens de Status */}
+                {sendingStatus.message && (
+                  <div className={`${
+                    sendingStatus.message.includes("✅") ? "bg-green-50 border-green-200" : "bg-blue-50 border-blue-200"
+                  } border rounded-lg p-4`}>
+                    <div className="flex">
+                      <div className="flex-shrink-0">
+                        {sendingStatus.message.includes("✅") ? (
+                          <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                        ) : (
+                          <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                      </div>
+                      <div className="ml-3">
+                        <p className={`text-sm ${
+                          sendingStatus.message.includes("✅") ? "text-green-700" : "text-blue-700"
+                        }`}>
+                          {sendingStatus.message}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Erros */}
+                {sendingStatus.error && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <div className="flex">
+                      <div className="flex-shrink-0">
+                        <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <div className="ml-3">
+                        <p className="text-sm text-red-700">
+                          {sendingStatus.error}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-between items-center text-sm text-gray-500 pt-4 border-t border-gray-200">
+                  <span>Tempo estimado restante:</span>
+                  <span className="font-medium">
+                    {calculateEstimatedTime(sendingStatus.totalContacts - sendingStatus.currentContact + 1)}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null
       )}
 
       {/* Passo 1: Seleção de Contatos */}

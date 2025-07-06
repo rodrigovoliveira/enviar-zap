@@ -28,6 +28,45 @@
     <priority>0.9</priority>
   </url>
   
+  <!-- Blog - Listagem -->
+  <url>
+    <loc>https://mandarwhats.com.br/blog</loc>
+    <lastmod>2024-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Artigos do Blog -->
+  <url>
+    <loc>https://mandarwhats.com.br/blog/enviar-whatsapp-sem-salvar-contato</loc>
+    <lastmod>2024-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mandarwhats.com.br/blog/disparo-mensagens-massa-whatsapp</loc>
+    <lastmod>2024-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mandarwhats.com.br/blog/ferramentas-gratis-whatsapp-web</loc>
+    <lastmod>2024-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mandarwhats.com.br/blog/whatsapp-para-negocios-automatizar-vender-mais</loc>
+    <lastmod>2024-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mandarwhats.com.br/blog/modelos-mensagens-eficientes-whatsapp</loc>
+    <lastmod>2024-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
   <!-- Páginas Legais - Termos de Uso -->
   <url>
     <loc>https://mandarwhats.com.br/termos-de-uso</loc>

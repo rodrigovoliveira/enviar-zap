@@ -41,6 +41,11 @@ Allow: /manifest.json
 Allow: /sitemap.xml
 Allow: /robots.txt
 
+# Permitir indexação do blog e artigos
+Allow: /blog
+Allow: /blog/
+Allow: /blog/*
+
 # Sitemap
 Sitemap: https://mandarwhats.com.br/sitemap.xml
 

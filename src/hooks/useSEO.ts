@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAnalytics } from './useAnalytics';
+import { blogPosts } from '../components/posts';
 
 interface SEOConfig {
   title: string;
@@ -51,8 +52,28 @@ const seoConfigs: Record<string, SEOConfig> = {
     ogTitle: 'Política de Privacidade | Mandar Whats',
     ogDescription: 'Política de privacidade do Mandar Whats. Saiba como protegemos seus dados.',
     canonical: 'https://mandarwhats.com.br/politica-privacidade'
+  },
+  '/blog': {
+    title: 'Blog | Mandar Whats - Dicas e Tutoriais sobre WhatsApp',
+    description: 'Blog com dicas, tutoriais e informações sobre como usar o WhatsApp de forma eficiente para negócios, vendas e comunicação. Aprenda sobre envio em massa, automação e ferramentas gratuitas.',
+    keywords: 'blog whatsapp, dicas whatsapp, tutoriais whatsapp, whatsapp para negócios, automação whatsapp, envio em massa whatsapp',
+    ogTitle: 'Blog | Mandar Whats - Dicas e Tutoriais sobre WhatsApp',
+    ogDescription: 'Blog com dicas, tutoriais e informações sobre como usar o WhatsApp de forma eficiente para negócios, vendas e comunicação.',
+    canonical: 'https://mandarwhats.com.br/blog'
   }
 };
+
+// Adiciona dinamicamente SEO para cada post do blog
+blogPosts.forEach(post => {
+  seoConfigs[`/blog/${post.slug}`] = {
+    title: `${post.title} | Mandar Whats`,
+    description: post.description,
+    keywords: `blog whatsapp, ${post.title.toLowerCase()}, ${post.slug.replace(/-/g, ' ')}`,
+    ogTitle: post.title,
+    ogDescription: post.description,
+    canonical: `https://mandarwhats.com.br/blog/${post.slug}`
+  };
+});
 
 export const useSEO = () => {
   const location = useLocation();

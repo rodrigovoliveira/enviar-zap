@@ -30,9 +30,14 @@ export const ContactInput: React.FC<ContactInputProps> = ({
   const { validatePhone } = usePhoneValidation();
 
   useEffect(() => {
-    if (initialContacts.length > 0) {
+    if (
+      initialContacts.length > 0 &&
+      (initialContacts.length !== contacts.length ||
+        initialContacts.some((c, i) => JSON.stringify(c) !== JSON.stringify(contacts[i])))
+    ) {
       setContacts(initialContacts);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialContacts]);
 
   useEffect(() => {
@@ -193,25 +198,25 @@ export const ContactInput: React.FC<ContactInputProps> = ({
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-64">
+              <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-44 min-w-[140px] max-w-[180px]">
                 Telefone
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50">
+              <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50 w-32 min-w-[100px] max-w-[160px]">
                 Variável 1
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50">
+              <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50 w-32 min-w-[100px] max-w-[160px]">
                 Variável 2
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50">
+              <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50 w-32 min-w-[100px] max-w-[160px]">
                 Variável 3
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50">
+              <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50 w-32 min-w-[100px] max-w-[160px]">
                 Variável 4
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50">
+              <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-blue-50 w-32 min-w-[100px] max-w-[160px]">
                 Variável 5
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Ações
               </th>
             </tr>
@@ -221,16 +226,21 @@ export const ContactInput: React.FC<ContactInputProps> = ({
               const validation = validatePhone(contact.phone);
               return (
                 <tr key={index}>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-4 py-4 whitespace-nowrap align-top">
                     <PhoneInput
                       country={'br'}
                       value={contact.phone}
                       onChange={(phone) => handlePhoneChange(index, phone)}
-                      inputClass={`w-full p-2 border rounded ${
+                      inputClass={`w-full min-w-[120px] max-w-[170px] p-2 border rounded ${
                         contact.phone && !validation.isValid ? 'border-red-500' : ''
                       }`}
                       containerClass="w-full"
                       buttonClass="border rounded"
+                      inputProps={{
+                        autoComplete: 'tel',
+                        name: `phone-${index}`,
+                        'aria-label': `Número do WhatsApp - Contato ${index + 1}`
+                      }}
                     />
                     {contact.phone && !validation.isValid && (
                       <p className="mt-1 text-sm text-red-600">
@@ -238,52 +248,18 @@ export const ContactInput: React.FC<ContactInputProps> = ({
                       </p>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <input
-                      type="text"
-                      value={contact.value1 || ''}
-                      onChange={(e) => handleValueChange(index, 'value1', e.target.value)}
-                      className="w-full p-2 border rounded bg-blue-50 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                      placeholder="Variável 1"
-                    />
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <input
-                      type="text"
-                      value={contact.value2 || ''}
-                      onChange={(e) => handleValueChange(index, 'value2', e.target.value)}
-                      className="w-full p-2 border rounded bg-blue-50 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                      placeholder="Variável 2"
-                    />
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <input
-                      type="text"
-                      value={contact.value3 || ''}
-                      onChange={(e) => handleValueChange(index, 'value3', e.target.value)}
-                      className="w-full p-2 border rounded bg-blue-50 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                      placeholder="Variável 3"
-                    />
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <input
-                      type="text"
-                      value={contact.value4 || ''}
-                      onChange={(e) => handleValueChange(index, 'value4', e.target.value)}
-                      className="w-full p-2 border rounded bg-blue-50 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                      placeholder="Variável 4"
-                    />
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <input
-                      type="text"
-                      value={contact.value5 || ''}
-                      onChange={(e) => handleValueChange(index, 'value5', e.target.value)}
-                      className="w-full p-2 border rounded bg-blue-50 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                      placeholder="Variável 5"
-                    />
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                  {[1,2,3,4,5].map((num) => (
+                    <td key={num} className="px-3 py-4 whitespace-nowrap align-top">
+                      <input
+                        type="text"
+                        value={contact[`value${num}` as keyof Contact] || ''}
+                        onChange={(e) => handleValueChange(index, `value${num}` as keyof Contact, e.target.value)}
+                        className="w-full min-w-[100px] max-w-[160px] p-2 border rounded bg-blue-50 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                        placeholder={`Variável ${num}`}
+                      />
+                    </td>
+                  ))}
+                  <td className="px-2 py-4 whitespace-nowrap align-top">
                     <button
                       onClick={() => duplicateContact(index)}
                       disabled={contacts.length >= APP_CONFIG.MAX_CONTACTS}
